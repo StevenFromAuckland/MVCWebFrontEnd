@@ -1,0 +1,43 @@
+﻿@model IEnumerable<HillLabTestEntities.Category>
+
+@{
+    ViewData["Title"] = "All Categories";
+}
+
+<div class="container">
+    <h3>@ViewData["Title"]</h3>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |
+                        @*<a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>*@
+                        @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId }, new { onclick = "return confirm('Are sure to delete the category?');" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
